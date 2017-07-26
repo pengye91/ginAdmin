@@ -3,7 +3,7 @@ var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -25,8 +25,17 @@ module.exports = {
       '@': resolve('src')
     }
   },
+  vue: {
+    loaders: {
+      scss: 'style!css!sass'
+    }
+  },
   module: {
     rules: [
+      {
+        test: /\.s[a|c]ss$/,
+        loader: 'style!css!sass'
+      },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
